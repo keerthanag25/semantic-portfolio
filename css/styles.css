@@ -3,7 +3,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    transition: all 0.3s ease;
 }
 
 /* VARIABLES */
@@ -33,9 +32,10 @@ header {
     text-align: center;
     padding: 2rem;
     background: rgba(0,0,0,0.2);
+    margin-bottom: 20px;
 }
 
-/* NAV (Flexbox) */
+/* NAV */
 nav ul {
     display: flex;
     justify-content: center;
@@ -49,12 +49,19 @@ nav a {
     text-decoration: none;
 }
 
-/* CONTAINER (Grid) */
+/* THEME BUTTON */
+#theme-toggle {
+    margin-top: 10px;
+}
+
+/* CONTAINER (GRID) */
 .container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 20px;
+    gap: 30px;
 }
 
 /* HERO */
@@ -67,13 +74,14 @@ nav a {
 .card {
     background: var(--card-bg);
     padding: 1.5rem;
-    border-radius: 10px;
+    border-radius: 12px;
+    width: 100%;
 }
 
-/* SKILLS GRID */
+/* SKILLS GRID (FIXED) */
 .skills {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
 
@@ -83,6 +91,7 @@ nav a {
     color: black;
     text-align: center;
     font-weight: bold;
+    padding: 20px;
 }
 
 /* FORM */
@@ -121,13 +130,32 @@ footer {
     }
 }
 
-/* RESPONSIVE */
-@media (min-width: 768px) {
+/* 📱 MOBILE */
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .skills {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 📱 TABLET */
+@media (min-width: 601px) and (max-width: 1023px) {
+    .skills {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 💻 DESKTOP */
+@media (min-width: 1024px) {
     .container {
         grid-template-columns: 1fr 1fr;
     }
 
     .hero {
-        grid-column: span 2;
+        grid-column: 1 / -1;
     }
 }
