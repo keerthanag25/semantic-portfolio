@@ -3,14 +3,29 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+/* VARIABLES */
+:root {
+    --bg-color: #0f172a;
+    --text-color: #ffffff;
+    --card-bg: rgba(255,255,255,0.1);
+    --accent: #00f7ff;
+}
+
+/* LIGHT MODE */
+.light-mode {
+    --bg-color: #f4f4f4;
+    --text-color: #222;
+    --card-bg: #ffffff;
 }
 
 /* BODY */
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #1d2671, #c33764);
-    color: #fff;
-    min-height: 100vh;
+    background: var(--bg-color);
+    color: var(--text-color);
 }
 
 /* HEADER */
@@ -18,142 +33,85 @@ header {
     text-align: center;
     padding: 2rem;
     background: rgba(0,0,0,0.2);
-    backdrop-filter: blur(10px);
 }
 
-header h1 {
-    font-size: 2.5rem;
-}
-
-/* NAVBAR */
+/* NAV (Flexbox) */
 nav ul {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     list-style: none;
-    margin-top: 10px;
     gap: 20px;
 }
 
 nav a {
-    color: white;
+    color: var(--text-color);
     text-decoration: none;
-    font-weight: 500;
-    position: relative;
 }
 
-/* Underline animation */
-nav a::after {
-    content: "";
-    position: absolute;
-    width: 0%;
-    height: 2px;
-    background: #00f7ff;
-    left: 0;
-    bottom: -5px;
-    transition: 0.3s;
-}
-
-nav a:hover::after {
-    width: 100%;
-}
-
-/* CONTAINER */
+/* CONTAINER (Grid) */
 .container {
-    max-width: 1000px;
-    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
     padding: 20px;
 }
 
 /* HERO */
 .hero {
     text-align: center;
-    padding: 4rem 1rem;
+    padding: 3rem 1rem;
 }
 
-.hero h2 {
-    font-size: 2.8rem;
-    margin-bottom: 10px;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    opacity: 0.9;
-}
-
-/* CARD (Glass Effect) */
+/* CARD */
 .card {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 2rem;
-    border-radius: 15px;
-    margin-bottom: 30px;
-    backdrop-filter: blur(15px);
-    transition: 0.3s;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-
-.card:hover {
-    transform: translateY(-10px) scale(1.02);
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 10px;
 }
 
 /* SKILLS GRID */
 .skills {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 20px;
 }
 
-/* SKILL BOX */
+/* SKILL CARD */
 .skills .card {
+    background: linear-gradient(135deg, #00f7ff, #00c3ff);
+    color: black;
     text-align: center;
     font-weight: bold;
-    font-size: 1.1rem;
-    background: linear-gradient(135deg, #00f7ff, #00c3ff);
-    color: #000;
-    cursor: pointer;
-}
-
-.skills .card:hover {
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
 }
 
 /* FORM */
 input, textarea {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     margin-bottom: 1rem;
-    border-radius: 8px;
+    border-radius: 5px;
     border: none;
 }
 
 button {
-    padding: 12px;
+    padding: 10px;
     border: none;
-    border-radius: 8px;
-    background: #00f7ff;
-    color: black;
-    font-weight: bold;
+    background: var(--accent);
     cursor: pointer;
-    transition: 0.3s;
-}
-
-button:hover {
-    transform: scale(1.05);
-    background: #ff9a9e;
 }
 
 /* FOOTER */
 footer {
     text-align: center;
     padding: 1rem;
-    margin-top: 30px;
-    opacity: 0.8;
 }
 
 /* ANIMATION */
 .fade-in {
     opacity: 0;
-    transform: translateY(30px);
-    animation: fadeIn 1s ease forwards;
+    transform: translateY(20px);
+    animation: fadeIn 1s forwards;
 }
 
 @keyframes fadeIn {
@@ -164,12 +122,12 @@ footer {
 }
 
 /* RESPONSIVE */
-@media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
+@media (min-width: 768px) {
+    .container {
+        grid-template-columns: 1fr 1fr;
     }
 
-    .hero h2 {
-        font-size: 2rem;
+    .hero {
+        grid-column: span 2;
     }
 }
